@@ -2,7 +2,7 @@
 <html lang="zh-TW">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>娛樂麻將：經典 16 張台灣麻將</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
@@ -45,7 +45,7 @@
       background-image: linear-gradient(rgba(21, 128, 61, 0.45), rgba(20, 83, 45, 0.45));
       background-size: cover;
       background-position: center;
-      border: 14px solid var(--wood-border);
+      border: 12px solid var(--wood-border);
       border-radius: 24px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), inset 0 0 40px rgba(0, 0, 0, 0.6);
       display: flex;
@@ -94,7 +94,7 @@
       height: calc(100% - 48px);
       position: relative;
       display: grid;
-      grid-template-rows: 100px 1fr 165px; 
+      grid-template-rows: 110px 1fr 165px; 
       grid-template-columns: 140px 1fr 140px;
       padding: 10px;
       overflow: hidden;
@@ -152,6 +152,10 @@
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
       position: relative;
       z-index: 10;
+    }
+
+    #avatar-south {
+      flex-shrink: 0 !important; /* Critical security lock: matches left opponent structure exactly */
     }
 
     .avatar-card.active-turn {
@@ -376,7 +380,7 @@
     #river-west {
       left: 15px;
       top: 50%;
-      transform: translateY(-50%) rotate(90deg);
+      transform: translateY(-50%) rotate(90.01deg); /* Chromium micro rotation workaround: forces ultra-crisp thin serif font */
       grid-template-columns: repeat(9, 24px);
       grid-template-rows: repeat(2, 32px);
     }
@@ -384,7 +388,7 @@
     #river-east {
       right: 15px;
       top: 50%;
-      transform: translateY(-50%) rotate(-90deg);
+      transform: translateY(-50%) rotate(-90.01deg);
       grid-template-columns: repeat(9, 24px);
       grid-template-rows: repeat(2, 32px);
     }
@@ -400,7 +404,8 @@
       justify-content: center;
       align-items: center;
       font-size: 34px;
-      font-weight: bold;
+      font-family: "PMingLiU", "MingLiU", "MingLiU-ExtB", "Songti TC", "Songti SC", "BabelStone Han", "Segoe UI Symbol", serif !important;
+      font-weight: normal !important;
       cursor: pointer;
       position: relative;
       transition: transform 0.15s ease, box-shadow 0.15s ease;
@@ -455,10 +460,14 @@
       border: 1px solid #cbd5e1;
       border-radius: 3px;
       font-size: 18px;
+      font-family: "PMingLiU", "MingLiU", "MingLiU-ExtB", "Songti TC", "Songti SC", "BabelStone Han", "Segoe UI Symbol", serif !important;
+      font-weight: normal !important;
       display: flex;
       justify-content: center;
       align-items: center;
-      box-shadow: 0 1px 1px rgba(0,0,0,0.2);
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     .river-tile.latest-discard {
@@ -479,10 +488,12 @@
       border: 1px solid #cbd5e1;
       border-radius: 3px;
       font-size: 22px;
+      font-family: "PMingLiU", "MingLiU", "MingLiU-ExtB", "Songti TC", "Songti SC", "BabelStone Han", "Segoe UI Symbol", serif !important;
+      font-weight: normal !important;
       display: flex;
       justify-content: center;
       align-items: center;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
     }
 
     #player-hand {
@@ -604,6 +615,8 @@
       justify-content: center;
       align-items: center;
       font-size: 75px;
+      font-family: "PMingLiU", "MingLiU", "MingLiU-ExtB", "Songti TC", "Songti SC", "BabelStone Han", "Segoe UI Symbol", serif !important;
+      font-weight: normal !important;
       z-index: 150;
       opacity: 0;
       pointer-events: none;
@@ -646,7 +659,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(15, 23, 42, 0.95);
+      background: rgba(15, 23, 42, 0.98);
       z-index: 300;
       display: flex;
       flex-direction: column;
@@ -654,11 +667,12 @@
       align-items: center;
       border-radius: 20px;
       text-align: center;
-      padding: 20px;
+      padding: 40px;
+      overflow-y: auto;
     }
 
     .retro-title {
-      font-size: 42px;
+      font-size: 38px;
       font-weight: 900;
       color: #f59e0b;
       text-shadow: 0 0 10px rgba(245, 158, 11, 0.6), 2px 2px 0px #7c2d12;
@@ -668,10 +682,10 @@
 
     .sub-title {
       font-size: 13px;
-      color: #94a3b8;
+      color: #cbd5e1;
       margin-bottom: 25px;
-      max-width: 650px;
-      line-height: 1.5;
+      max-width: 750px;
+      line-height: 1.6;
     }
 
     .retro-btn {
@@ -692,13 +706,13 @@
     }
 
     #report-box {
-      background: rgba(30, 41, 59, 0.8);
+      background: rgba(30, 41, 59, 0.85);
       border: 2px solid var(--gold-accent);
-      padding: 12px;
+      padding: 16px;
       border-radius: 12px;
       margin-bottom: 15px;
       width: 95%;
-      max-width: 500px;
+      max-width: 550px;
     }
 
     .report-row {
@@ -736,7 +750,7 @@
           <div class="avatar-icon">👴</div>
           <div class="avatar-name" id="name-north">豬大哥 <span class="dealer-badge hidden">莊</span></div>
           <div class="avatar-score">Score: <span id="score-north">10000</span></div>
-          <div id="ting-badge-north" class="hidden text-[10px] bg-purple-600 text-white rounded px-1 py-0.5 mt-0.5 font-bold animate-bounce">已聽牌</div>
+          <div id="ting-badge-north" class="hidden text-[10px] bg-purple-600 text-white rounded px-1 py-0.5 mt-0.5 font-bold animate-pulse">已聽牌</div>
           <div class="flower-box" id="flowers-north"></div>
         </div>
         <div class="speech-bubble" id="bubble-north"></div>
@@ -750,7 +764,7 @@
           <div class="avatar-icon">🧔</div>
           <div class="avatar-name" id="name-west">乃哥 <span class="dealer-badge hidden">莊</span></div>
           <div class="avatar-score">Score: <span id="score-west">10000</span></div>
-          <div id="ting-badge-west" class="hidden text-[10px] bg-purple-600 text-white rounded px-1 py-0.5 mt-0.5 font-bold animate-bounce">已聽牌</div>
+          <div id="ting-badge-west" class="hidden text-[10px] bg-purple-600 text-white rounded px-1 py-0.5 mt-0.5 font-bold animate-pulse">已聽牌</div>
           <div class="flower-box" id="flowers-west"></div>
         </div>
         <div class="speech-bubble" id="bubble-west"></div>
@@ -764,7 +778,7 @@
           <div class="avatar-icon">😎</div>
           <div class="avatar-name" id="name-east">憲哥 <span class="dealer-badge hidden">莊</span></div>
           <div class="avatar-score">Score: <span id="score-east">10000</span></div>
-          <div id="ting-badge-east" class="hidden text-[10px] bg-purple-600 text-white rounded px-1 py-0.5 mt-0.5 font-bold animate-bounce">已聽牌</div>
+          <div id="ting-badge-east" class="hidden text-[10px] bg-purple-600 text-white rounded px-1 py-0.5 mt-0.5 font-bold animate-pulse">已聽牌</div>
           <div class="flower-box" id="flowers-east"></div>
         </div>
         <div class="speech-bubble" id="bubble-east"></div>
@@ -791,11 +805,12 @@
         <div class="speech-bubble" id="bubble-south"></div>
 
         <div class="flex items-center justify-center gap-4 w-full relative">
-          <div class="avatar-card" id="avatar-south">
+          <!-- shrink-0 locks the card's width to match the left avatar and prevents squeeze deformation -->
+          <div class="avatar-card shrink-0" id="avatar-south">
             <div class="avatar-icon">👑</div>
             <div class="avatar-name" id="name-south">你(玩家) <span class="dealer-badge hidden">莊</span></div>
             <div class="avatar-score">Score: <span id="score-south">10000</span></div>
-            <div id="ting-badge-south" class="hidden text-[10px] bg-purple-600 text-white rounded px-1 py-0.5 mt-0.5 font-bold animate-bounce">已聽牌</div>
+            <div id="ting-badge-south" class="hidden text-[10px] bg-purple-600 text-white rounded px-1 py-0.5 mt-0.5 font-bold animate-pulse">已聽牌</div>
             <div class="flower-box" id="flowers-south"></div>
           </div>
           
@@ -826,10 +841,10 @@
     <div id="showcase-overlay">🀄</div>
     <div id="burst-text-container">碰</div>
 
-    <!-- 歡迎畫面（同步GM99台灣16張規則） -->
+    <!-- 歡迎畫面（同步GM99台灣16張規則與槓牌安全指引） -->
     <div id="start-screen" class="screen-overlay">
       <div class="retro-title">娛樂麻將：正宗台灣 16 張</div>
-      <div class="sub-title">
+      <div class="sub-title text-left">
         本遊戲深度同步 <b>GM99（G妹遊戲）官方「老子來一將」</b> 經典對戰館十六張規則！<br>
         1. <b>【基本牌型 16 台滿台封頂】</b>：一般大牌型（如清一色、字一色、碰碰胡）基本台累計上限為 16 台。<br>
         2. <b>【特定大台豁免封頂】</b>：<b>莊家連莊拉莊台</b> 與 <b>門清自摸（3台）</b> 屬特殊豁免台，直接突破 16 台限制加載結算！<br>
@@ -1180,7 +1195,7 @@
 
     function checkOwnTurnKong(pKey) {
       if (pKey === "south" && GAME_STATE.players.south.isTing) {
-        return false;
+        return false; // Absolute safety lock: Disable kong check completely if Southern player is Tinged (已聽牌)
       }
 
       const player = GAME_STATE.players[pKey];
@@ -1388,6 +1403,7 @@
                 return;
               }
 
+              // Normal automation: Discard drawn tile automatically if tinged
               setTimeout(() => {
                 GAME_STATE.selectedTileIdx = 'draw';
                 discardSelectedTile();
@@ -1456,6 +1472,7 @@
       const rawDraw = GAME_STATE.deck.pop();
       const player = GAME_STATE.players[pKey];
 
+      // Draw tile immediately synced with turn start
       checkDrawFlowerRecursively(pKey, rawDraw, (finalTile) => {
         if (GAME_STATE.isGameOver) return;
         if (!finalTile) {
@@ -1466,6 +1483,7 @@
         player.hand.push(finalTile);
         sortTiles(player.hand);
         
+        // 1-second static thinking transition
         const combinedHand = [...player.hand];
         const canSelfHu = checkHu16(combinedHand, player.melds.length);
         if (canSelfHu) {
@@ -1894,6 +1912,7 @@
               return;
             }
 
+            // GM99 Rules: If wait tiles are detected on a kong draw, light up Ting immediately
             if (canSelfHu || canKongAgain || canTingState) {
               GAME_STATE.availableActions = {};
               if (canSelfHu) {
@@ -2063,10 +2082,10 @@
 
     function nextTurn() {
       GAME_STATE.turnIdx = (GAME_STATE.turnIdx + 1) % 4;
-      updateUI();
+      updateUI(); // Rotates arrow immediately (0.08s transition)
       
       setTimeout(() => {
-        startTurn();
+        startTurn(); // Draws synced card exactly after 1 second
       }, 1000);
     }
 
@@ -2471,13 +2490,27 @@
       });
 
       const compassP = document.getElementById("compass-pointer");
-      const currentRoundPlayer = GAME_STATE.order[GAME_STATE.turnIdx];
-      let angle = 0;
-      if (currentRoundPlayer === "south") angle = 180;
-      else if (currentRoundPlayer === "east") angle = 90;
-      else if (currentRoundPlayer === "north") angle = 0;
-      else if (currentRoundPlayer === "west") angle = 270;
-      compassP.style.transform = `rotate(${angle}deg)`;
+      if (compassP) {
+        const currentRoundPlayer = GAME_STATE.order[GAME_STATE.turnIdx];
+        let baseAngle = 0;
+        if (currentRoundPlayer === "south") baseAngle = 180;
+        else if (currentRoundPlayer === "east") baseAngle = 90;
+        else if (currentRoundPlayer === "north") baseAngle = 0;
+        else if (currentRoundPlayer === "west") baseAngle = -90;
+
+        if (GAME_STATE.currentPointerAngle === undefined) {
+          GAME_STATE.currentPointerAngle = 180; // 起始指向南方
+        }
+
+        let current = GAME_STATE.currentPointerAngle;
+        let diff = ((baseAngle - current) % 360 + 360) % 360;
+        if (diff > 180) {
+          diff -= 360;
+        }
+        
+        GAME_STATE.currentPointerAngle = current + diff;
+        compassP.style.transform = `rotate(${GAME_STATE.currentPointerAngle}deg)`;
+      }
 
       const winds = ["東風圈", "南風圈", "西風圈", "北風圈"];
       document.getElementById("compass-wind").innerText = winds[(GAME_STATE.roundCount - 1) % 4];
@@ -2581,16 +2614,31 @@
         bubble.innerText = randomLine;
         bubble.classList.add("show");
         
-        playCharacterVoice(randomLine, pKey);
+        // 建立一個安全的關閉氣泡回呼函式
+        let isClosed = false;
+        const hideBubble = () => {
+          if (!isClosed) {
+            isClosed = true;
+            bubble.classList.remove("show");
+          }
+        };
 
-        setTimeout(() => {
-          bubble.classList.remove("show");
-        }, 2200);
+        if (voiceEnabled && window.speechSynthesis) {
+          // 將關閉動作傳遞給語音播放器，播完立刻執行
+          playCharacterVoice(randomLine, pKey, hideBubble);
+        } else {
+          // 靜音模式下，根據字數動態計算停留時間：每字 180ms + 500ms 緩衝，最短 1 秒
+          const duration = Math.max(1000, randomLine.length * 180 + 500);
+          setTimeout(hideBubble, duration);
+        }
       }
     }
 
-    function playCharacterVoice(text, pKey) {
-      if (!voiceEnabled || !window.speechSynthesis) return;
+    function playCharacterVoice(text, pKey, onEndCallback = null) {
+      if (!voiceEnabled || !window.speechSynthesis) {
+        if (onEndCallback) onEndCallback();
+        return;
+      }
 
       try {
         window.speechSynthesis.cancel();
@@ -2620,9 +2668,26 @@
         utterance.rate = baseRate;
         utterance.volume = 1.0;
 
+        // 綁定語音結束與語音錯誤事件，完成時立刻隱藏氣泡
+        let finished = false;
+        const triggerEnd = () => {
+          if (!finished) {
+            finished = true;
+            if (onEndCallback) onEndCallback();
+          }
+        };
+
+        utterance.onend = triggerEnd;
+        utterance.onerror = triggerEnd;
+
+        // 防呆保護機制：若 Speech Synthesis 發生無聲卡死或瀏覽器未正常觸發 onend，在理論最長播放時間後強制關閉
+        const estimatedMaxDuration = (text.length * 250) + 1200;
+        setTimeout(triggerEnd, estimatedMaxDuration);
+
         window.speechSynthesis.speak(utterance);
       } catch (err) {
         console.warn("人物語音播放失敗：", err);
+        if (onEndCallback) onEndCallback();
       }
     }
 
@@ -2784,6 +2849,7 @@
         }
       }
 
+      // GM99 standard cap: regular patterns limit to 16 tai
       let finalBaseTai = baseTai;
       let cappedNote = "";
       if (finalBaseTai > 16) {
